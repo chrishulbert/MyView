@@ -16,6 +16,7 @@
     // Make the VC's.
     UIViewController *root = [[ShowsViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:root];
+    nav.navigationBar.barStyle = UIBarStyleBlack;
     
     // Make the window.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

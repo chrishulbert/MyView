@@ -1,5 +1,5 @@
 //
-//  ShowsViewController.h
+//  UIView+MyUserInfo.h
 //  MyView
 //
 //  Created by Chris Hulbert on 17/10/2014.
@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShowsViewController : UIViewController
+@interface UIView (MyUserInfo)
+
+/// For user info that can be stored against any view.
+@property(nonatomic, strong) id myUserInfo;
 
 @end

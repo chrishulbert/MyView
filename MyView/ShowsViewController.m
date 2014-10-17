@@ -8,14 +8,17 @@
 
 #import "ShowsViewController.h"
 
+#import "ShowsView.h"
 #import "ShowsService.h"
 #import "Show.h"
 #import "ShowViewController.h"
+#import "UIButton+WebCache.h"
+#import "UIView+MyUserInfo.h"
 
 static NSString *kCellId = @"cell";
 
 @implementation ShowsViewController {
-    NSArray *_shows;
+    ShowsView *_view;
 }
 
 - (id)init {
@@ -25,39 +28,40 @@ static NSString *kCellId = @"cell";
     return self;
 }
 
+- (void)loadView {
+    _view = [[ShowsView alloc] init];
+    self.view = _view;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kCellId];
-
     [ShowsService requestShowsWithCompletion:^(NSArray *shows, BOOL success) {
         if (success) {
-            _shows = shows;
-            [self.tableView reloadData];
+            // Clear.
+            for (UIView *view in _view.subviews.copy) {
+                [view removeFromSuperview];
+            }
+            
+            // Add new ones.
+            for (Show *show in shows) {
+                UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+                [button sd_setBackgroundImageWithURL:show.image forState:UIControlStateNormal];
+                button.imageView.contentMode = UIViewContentModeScaleAspectFill;
+                button.clipsToBounds = YES;
+                button.myUserInfo = show;
+                [button addTarget:self action:@selector(tapShow:) forControlEvents:UIControlEventTouchUpInside];
+                [_view addSubview:button];
+            }
+            [_view setNeedsLayout];
         } else {
             NSLog(@"Error");
         }
     }];
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _shows.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    Show *show = _shows[indexPath.row];
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellId forIndexPath:indexPath];
-    cell.textLabel.text = show.name;
-
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Show *show = _shows[indexPath.row];
-    [self.navigationController pushViewController:[[ShowViewController alloc] initWithShow:show] animated:YES];
+- (void)tapShow:(UIButton *)button {
+    [self.navigationController pushViewController:[[ShowViewController alloc] initWithShow:button.myUserInfo] animated:YES];
 }
 
 @end
