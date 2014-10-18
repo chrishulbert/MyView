@@ -1,26 +1,17 @@
 //
-//  ShowsView.m
+//  UIView+GridLayout.m
 //  MyView
 //
-//  Created by Chris Hulbert on 17/10/2014.
+//  Created by Chris Hulbert on 18/10/2014.
 //  Copyright (c) 2014 Chris Hulbert. All rights reserved.
 //
-//  Root for ShowsViewController.
+//  Lays all the subviews out in a grid.
 
-#import "ShowsView.h"
+#import "UIView+GridLayout.h"
 
-@implementation ShowsView
+@implementation UIView (GridLayout)
 
-- (id)init {
-    if (self = [super init]) {
-        self.backgroundColor = [UIColor blackColor];
-    }
-    return self;
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
+- (void)layoutSubviewsAsGrid {
     int w = self.bounds.size.width;
     int h = self.bounds.size.height;
     
@@ -28,11 +19,10 @@
     int buttons = self.subviews.count;
     
     // Try a bunch of column counts to find the best fit.
-    NSLog(@"Layout");
     int bestDifference = 9999;
     int bestColumns = 1;
     int bestRows = 1;
-    for (int testColumnCount=1; testColumnCount<20; testColumnCount++) {
+    for (int testColumnCount=1; testColumnCount<10; testColumnCount++) {
         int rows = ceilf(buttons / ((float)testColumnCount));
         int buttonWidth = w / testColumnCount;
         int buttonHeight = buttonWidth * 90 / 160;

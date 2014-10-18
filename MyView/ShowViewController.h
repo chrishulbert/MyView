@@ -10,7 +10,7 @@
 
 @class Show;
 
-@interface ShowViewController : UITableViewController
+@interface ShowViewController : UIViewController
 
 - (id)initWithShow:(Show *)show;
 

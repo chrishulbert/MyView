@@ -15,8 +15,6 @@
 #import "UIButton+WebCache.h"
 #import "UIView+MyUserInfo.h"
 
-static NSString *kCellId = @"cell";
-
 @implementation ShowsViewController {
     ShowsView *_view;
 }

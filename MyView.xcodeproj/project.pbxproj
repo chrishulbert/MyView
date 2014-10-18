@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		833E3F1A19F26984006B4111 /* ShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E3F1919F26984006B4111 /* ShowView.m */; };
+		833E3F1D19F269B2006B4111 /* UIView+GridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E3F1C19F269B2006B4111 /* UIView+GridLayout.m */; };
 		83660CC019F12D3700F8DB3B /* ShowsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83660CBF19F12D3700F8DB3B /* ShowsView.m */; };
 		83660CE419F135E200F8DB3B /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 83660CC219F135E200F8DB3B /* LICENSE.txt */; };
 		83660CE519F135E200F8DB3B /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 83660CC419F135E200F8DB3B /* MKAnnotationView+WebCache.m */; };
@@ -51,6 +53,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		833E3F1819F26984006B4111 /* ShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowView.h; sourceTree = "<group>"; };
+		833E3F1919F26984006B4111 /* ShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowView.m; sourceTree = "<group>"; };
+		833E3F1B19F269B2006B4111 /* UIView+GridLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GridLayout.h"; sourceTree = "<group>"; };
+		833E3F1C19F269B2006B4111 /* UIView+GridLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GridLayout.m"; sourceTree = "<group>"; };
 		83660CBE19F12D3700F8DB3B /* ShowsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowsView.h; sourceTree = "<group>"; };
 		83660CBF19F12D3700F8DB3B /* ShowsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowsView.m; sourceTree = "<group>"; };
 		83660CC219F135E200F8DB3B /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -221,6 +227,10 @@
 				837FF21719EFFB6F002C615D /* ShowViewController.m */,
 				83660CF519F136CE00F8DB3B /* UIView+MyUserInfo.h */,
 				83660CF619F136CE00F8DB3B /* UIView+MyUserInfo.m */,
+				833E3F1819F26984006B4111 /* ShowView.h */,
+				833E3F1919F26984006B4111 /* ShowView.m */,
+				833E3F1B19F269B2006B4111 /* UIView+GridLayout.h */,
+				833E3F1C19F269B2006B4111 /* UIView+GridLayout.m */,
 			);
 			path = MyView;
 			sourceTree = "<group>";
@@ -356,6 +366,7 @@
 				837FF21819EFFB6F002C615D /* ShowViewController.m in Sources */,
 				83660CC019F12D3700F8DB3B /* ShowsView.m in Sources */,
 				83660CE619F135E200F8DB3B /* NSData+ImageContentType.m in Sources */,
+				833E3F1A19F26984006B4111 /* ShowView.m in Sources */,
 				837FF21219EFF8D6002C615D /* VideoService.m in Sources */,
 				837FF1E719EFEEF6002C615D /* ViewController.m in Sources */,
 				83660CEE19F135E200F8DB3B /* UIButton+WebCache.m in Sources */,
@@ -377,6 +388,7 @@
 				83660CEC19F135E200F8DB3B /* SDWebImageManager.m in Sources */,
 				837FF20C19EFF585002C615D /* VideosService.m in Sources */,
 				837FF20F19EFF763002C615D /* Video.m in Sources */,
+				833E3F1D19F269B2006B4111 /* UIView+GridLayout.m in Sources */,
 				83660CE719F135E200F8DB3B /* SDImageCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

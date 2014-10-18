@@ -20,6 +20,7 @@
     
     // Make the window.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.tintColor = [UIColor yellowColor];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     

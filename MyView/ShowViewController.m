@@ -10,14 +10,16 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 
+#import "ShowView.h"
 #import "Show.h"
 #import "VideosService.h"
 #import "Video.h"
 #import "VideoService.h"
-
-static NSString *kCellId = @"cell";
+#import "UIButton+WebCache.h"
+#import "UIView+MyUserInfo.h"
 
 @implementation ShowViewController {
+    ShowView *_view;
     Show *_show;
     NSArray *_videos;
 }
@@ -26,54 +28,59 @@ static NSString *kCellId = @"cell";
     if (self = [super init]) {
         _show = show;
         self.title = show.name;
+        self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     return self;
+}
+
+- (void)loadView {
+    _view = [[ShowView alloc] init];
+    self.view = _view;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kCellId];
-    
     [VideosService requestVideosForShow:_show completion:^(NSArray *videos, BOOL success) {
         if (success) {
             _videos = videos;
-            [self.tableView reloadData];
+            // Clear.
+            for (UIView *view in _view.subviews.copy) {
+                [view removeFromSuperview];
+            }
+            
+            // Add new ones.
+            for (Video *video in videos) {
+                UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+                [button sd_setBackgroundImageWithURL:video.image forState:UIControlStateNormal];
+                button.imageView.contentMode = UIViewContentModeScaleAspectFill;
+                button.clipsToBounds = YES;
+                button.myUserInfo = video;
+                [button addTarget:self action:@selector(tapVideo:) forControlEvents:UIControlEventTouchUpInside];
+                [_view addSubview:button];
+            }
+            [_view setNeedsLayout];
         } else {
             NSLog(@"Error");
         }
     }];
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _videos.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    Video *video = _videos[indexPath.row];
+- (void)tapVideo:(UIButton *)button {
+#warning TODO Show something
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellId forIndexPath:indexPath];
-    cell.textLabel.text = video.name;
-    
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Video *video = _videos[indexPath.row];
-
-    #warning TODO Show something
     self.view.userInteractionEnabled = NO;
-    [VideoService requestMp4ForVideo:video completion:^(Video *video, NSURL *mp4, BOOL success) {
+    button.enabled = NO;
+    
+    [VideoService requestMp4ForVideo:button.myUserInfo completion:^(Video *video, NSURL *mp4, BOOL success) {
         self.view.userInteractionEnabled = YES;
         
-        if (success) {
-            MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc] initWithContentURL:mp4];
-            [self presentMoviePlayerViewControllerAnimated:player];
-        } else {
-            NSLog(@"Error");
-        }
+//        if (success) {
+//            MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc] initWithContentURL:mp4];
+//            [self presentMoviePlayerViewControllerAnimated:player];
+//        } else {
+//            NSLog(@"Error");
+//        }
     }];
 }
 
