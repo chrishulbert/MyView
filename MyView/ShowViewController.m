@@ -14,9 +14,9 @@
 #import "Show.h"
 #import "VideosService.h"
 #import "Video.h"
-#import "UIButton+WebCache.h"
 #import "UIView+MyUserInfo.h"
 #import "MyMoviePlayerViewController.h"
+#import "ImageButton.h"
 
 @implementation ShowViewController {
     ShowView *_view;
@@ -51,10 +51,7 @@
             
             // Add new ones.
             for (Video *video in videos) {
-                UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-                [button sd_setBackgroundImageWithURL:video.image forState:UIControlStateNormal];
-                button.imageView.contentMode = UIViewContentModeScaleAspectFill;
-                button.clipsToBounds = YES;
+                ImageButton *button = [ImageButton buttonWithImage:video.image];
                 button.myUserInfo = video;
                 [button addTarget:self action:@selector(tapVideo:) forControlEvents:UIControlEventTouchUpInside];
                 [_view addSubview:button];

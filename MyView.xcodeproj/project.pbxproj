@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8320A1DE19F2CAD100AC48C7 /* MyMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8320A1DD19F2CAD100AC48C7 /* MyMoviePlayerViewController.m */; };
+		8320A1E119F2CE9D00AC48C7 /* ImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8320A1E019F2CE9D00AC48C7 /* ImageButton.m */; };
 		833E3F1A19F26984006B4111 /* ShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E3F1919F26984006B4111 /* ShowView.m */; };
 		833E3F1D19F269B2006B4111 /* UIView+GridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E3F1C19F269B2006B4111 /* UIView+GridLayout.m */; };
 		83660CC019F12D3700F8DB3B /* ShowsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83660CBF19F12D3700F8DB3B /* ShowsView.m */; };
@@ -56,6 +57,8 @@
 /* Begin PBXFileReference section */
 		8320A1DC19F2CAD100AC48C7 /* MyMoviePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMoviePlayerViewController.h; sourceTree = "<group>"; };
 		8320A1DD19F2CAD100AC48C7 /* MyMoviePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMoviePlayerViewController.m; sourceTree = "<group>"; };
+		8320A1DF19F2CE9D00AC48C7 /* ImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageButton.h; sourceTree = "<group>"; };
+		8320A1E019F2CE9D00AC48C7 /* ImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageButton.m; sourceTree = "<group>"; };
 		833E3F1819F26984006B4111 /* ShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowView.h; sourceTree = "<group>"; };
 		833E3F1919F26984006B4111 /* ShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowView.m; sourceTree = "<group>"; };
 		833E3F1B19F269B2006B4111 /* UIView+GridLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GridLayout.h"; sourceTree = "<group>"; };
@@ -236,6 +239,8 @@
 				833E3F1C19F269B2006B4111 /* UIView+GridLayout.m */,
 				8320A1DC19F2CAD100AC48C7 /* MyMoviePlayerViewController.h */,
 				8320A1DD19F2CAD100AC48C7 /* MyMoviePlayerViewController.m */,
+				8320A1DF19F2CE9D00AC48C7 /* ImageButton.h */,
+				8320A1E019F2CE9D00AC48C7 /* ImageButton.m */,
 			);
 			path = MyView;
 			sourceTree = "<group>";
@@ -372,6 +377,7 @@
 				83660CC019F12D3700F8DB3B /* ShowsView.m in Sources */,
 				83660CE619F135E200F8DB3B /* NSData+ImageContentType.m in Sources */,
 				833E3F1A19F26984006B4111 /* ShowView.m in Sources */,
+				8320A1E119F2CE9D00AC48C7 /* ImageButton.m in Sources */,
 				8320A1DE19F2CAD100AC48C7 /* MyMoviePlayerViewController.m in Sources */,
 				837FF21219EFF8D6002C615D /* VideoService.m in Sources */,
 				837FF1E719EFEEF6002C615D /* ViewController.m in Sources */,

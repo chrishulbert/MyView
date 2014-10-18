@@ -12,7 +12,7 @@
 #import "ShowsService.h"
 #import "Show.h"
 #import "ShowViewController.h"
-#import "UIButton+WebCache.h"
+#import "ImageButton.h"
 #import "UIView+MyUserInfo.h"
 
 @implementation ShowsViewController {
@@ -44,10 +44,7 @@
             
             // Add new ones.
             for (Show *show in shows) {
-                UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-                [button sd_setBackgroundImageWithURL:show.image forState:UIControlStateNormal];
-                button.imageView.contentMode = UIViewContentModeScaleAspectFill;
-                button.clipsToBounds = YES;
+                ImageButton *button = [ImageButton buttonWithImage:show.image];
                 button.myUserInfo = show;
                 [button addTarget:self action:@selector(tapShow:) forControlEvents:UIControlEventTouchUpInside];
                 [_view addSubview:button];
