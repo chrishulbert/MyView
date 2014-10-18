@@ -24,6 +24,7 @@ static NSString *kCellId = @"cell";
 - (id)init {
     if (self = [super init]) {
         self.title = @"Shows";
+        self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     return self;
 }

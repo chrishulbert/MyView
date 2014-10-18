@@ -23,16 +23,12 @@
     
     int w = self.bounds.size.width;
     int h = self.bounds.size.height;
-    // Some reason the top guide is 319?!?
-    UIViewController *vc = (UIViewController *)self.nextResponder;
-    int t = 32;// [vc respondsToSelector:@selector(topLayoutGuide)] ? [[vc topLayoutGuide] length] : 0;
-    int availableHeight = h - t;
     
     // Images are 160x90.
     int buttons = self.subviews.count;
     
     // Try a bunch of column counts to find the best fit.
-    NSLog(@"Trying");
+    NSLog(@"Layout");
     int bestDifference = 9999;
     int bestColumns = 1;
     int bestRows = 1;
@@ -43,8 +39,7 @@
         int buttonWidth = w / testColumnCount;
         int buttonHeight = buttonWidth * 90 / 160;
         int allHeight = buttonHeight * rows;
-        int thisDifference = ABS(allHeight - availableHeight);
-        NSLog(@"Grid %dx%d height=%d desired=%d diff=%d t=%d", testColumnCount, rows, allHeight, availableHeight, thisDifference, t);
+        int thisDifference = ABS(allHeight - h);
         if (thisDifference < bestDifference) {
             bestDifference = thisDifference;
             bestColumns = testColumnCount;
@@ -57,7 +52,7 @@
     // Lay out the buttons.
     int row=0, col=0;
     for (UIView *view in self.subviews) {
-        view.frame = CGRectMake(col*bestWidth, t + row*bestHeight, bestWidth, bestHeight);
+        view.frame = CGRectMake(col*bestWidth, row*bestHeight, bestWidth, bestHeight);
         
         col++;
         if (col >= bestColumns) {
