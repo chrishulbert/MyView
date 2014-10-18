@@ -14,9 +14,9 @@
 #import "Show.h"
 #import "VideosService.h"
 #import "Video.h"
-#import "VideoService.h"
 #import "UIButton+WebCache.h"
 #import "UIView+MyUserInfo.h"
+#import "MyMoviePlayerViewController.h"
 
 @implementation ShowViewController {
     ShowView *_view;
@@ -67,19 +67,7 @@
 }
 
 - (void)tapVideo:(UIButton *)button {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Loading" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
-    [alert show];
-    
-    [VideoService requestMp4ForVideo:button.myUserInfo completion:^(Video *video, NSURL *mp4, BOOL success) {
-        [alert dismissWithClickedButtonIndex:0 animated:YES];
-        
-        if (success) {
-            MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc] initWithContentURL:mp4];
-            [self presentMoviePlayerViewControllerAnimated:player];
-        } else {
-            NSLog(@"Error");
-        }
-    }];
+    [self presentMoviePlayerViewControllerAnimated:[[MyMoviePlayerViewController alloc] initWithVideo:button.myUserInfo]];
 }
 
 @end
