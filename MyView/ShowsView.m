@@ -32,8 +32,6 @@
     int bestDifference = 9999;
     int bestColumns = 1;
     int bestRows = 1;
-    int bestWidth = 0;
-    int bestHeight = 0;
     for (int testColumnCount=1; testColumnCount<20; testColumnCount++) {
         int rows = ceilf(buttons / ((float)testColumnCount));
         int buttonWidth = w / testColumnCount;
@@ -44,15 +42,21 @@
             bestDifference = thisDifference;
             bestColumns = testColumnCount;
             bestRows = rows;
-            bestWidth = buttonWidth;
-            bestHeight = buttonHeight;
         }
     }
     
     // Lay out the buttons.
     int row=0, col=0;
+    int colWidth = roundf(w / ((float)bestColumns));
+    int lastColWidth = w - colWidth*(bestColumns-1); // Compensate for rounding.
+    int rowHeight = roundf(h / ((float)bestRows));
+    int lastRowHeight = h - rowHeight*(bestRows-1);
     for (UIView *view in self.subviews) {
-        view.frame = CGRectMake(col*bestWidth, row*bestHeight, bestWidth, bestHeight);
+        BOOL isLastCol = col == bestColumns-1;
+        BOOL isLastRow = row == bestRows-1;
+        view.frame = CGRectMake(col*colWidth, row*rowHeight,
+                                isLastCol ? lastColWidth : colWidth,
+                                isLastRow ? lastRowHeight : rowHeight);
         
         col++;
         if (col >= bestColumns) {
