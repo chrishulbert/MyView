@@ -67,20 +67,18 @@
 }
 
 - (void)tapVideo:(UIButton *)button {
-#warning TODO Show something
-    
-    self.view.userInteractionEnabled = NO;
-    button.enabled = NO;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Loading" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+    [alert show];
     
     [VideoService requestMp4ForVideo:button.myUserInfo completion:^(Video *video, NSURL *mp4, BOOL success) {
-        self.view.userInteractionEnabled = YES;
+        [alert dismissWithClickedButtonIndex:0 animated:YES];
         
-//        if (success) {
-//            MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc] initWithContentURL:mp4];
-//            [self presentMoviePlayerViewControllerAnimated:player];
-//        } else {
-//            NSLog(@"Error");
-//        }
+        if (success) {
+            MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc] initWithContentURL:mp4];
+            [self presentMoviePlayerViewControllerAnimated:player];
+        } else {
+            NSLog(@"Error");
+        }
     }];
 }
 
